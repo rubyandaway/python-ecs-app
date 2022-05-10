@@ -1,0 +1,56 @@
+
+<html>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.united.css') }}">
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+<script type="text/javascript">
+  function getall(){ 
+    var obj, dbParam, xmlhttp, myObj, x, txt = "";
+    var responseText = document.getElementById('response');
+    var xmlhttp = new XMLHttpRequest(); var url = "{{ backend }}/api/v1/get"
+    xmlhttp.open("GET", url, true);
+    xmlhttp.setRequestHeader("Content-type", "application/json");
+    xmlhttp.onload = (res) => {
+        console.log(res['target']['response']);
+        message = res['target']['response'];
+        myObj = JSON.parse(message);
+        txt += "<table border='1'>"
+        txt += "<tr><td>Username</td><td>Checked-In</td><td>Checked-Out</td></tr>"
+        for (x in myObj["Items"]) {
+          txt += "<tr><td>" + myObj["Items"][x]["Username"] + "</td><td>" + myObj["Items"][x]["CheckedIn"] + "</td><td>" + myObj["Items"][x]["CheckedOut"] + "</td></tr>";
+        }
+        txt += "</table>"
+        responseText.innerHTML = txt;
+        
+    };
+    xmlhttp.send();
+  }
+  </script>
+  
+
+<title>Check-In System</title>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Check-In System</a>
+        </div>              
+    </div>
+    </nav>
+
+<div class="container">
+  
+  <h1>{% block page_title %}{% endblock %}</h1>
+  
+  <p>{% block body %}{% endblock %}</p>
+
+</div>
+
+
+</html>

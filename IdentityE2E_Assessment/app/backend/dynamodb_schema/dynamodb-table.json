@@ -1,0 +1,13 @@
+{
+    "TableName": "UserCheckin",
+    "KeySchema": [
+      { "AttributeName": "Username", "KeyType": "HASH" }
+    ],
+    "AttributeDefinitions": [
+      { "AttributeName": "Username", "AttributeType": "S" }
+    ],
+    "ProvisionedThroughput": {
+      "ReadCapacityUnits": 5,
+      "WriteCapacityUnits": 5
+    }
+}

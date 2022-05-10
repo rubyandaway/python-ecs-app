@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block page_title %}Welcome{% endblock %}
+{% block body %}
+    {{ super() }}
+
+    <p>Please check users into and out of the system below.</p>
+
+    <br />
+    <p>
+        Check-In a user
+    </p>
+    <form action="/checkin" method="post" class="navbar-form">
+        <div class="form-group">
+          <input type="text" name="checkin" placeholder="User Name" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-success">Check In</button>
+    </form>
+    <br />
+    <p>
+        Check-Out a user
+    </p>
+    <form action="/checkout" method="post" class="navbar-form">
+        <div class="form-group">
+          <input type="text" name="checkout" placeholder="User Name" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-success">Check Out</button>
+    </form>
+    <br />
+    <button type="submit" class="btn btn-success" name = "submit" id = "submit" onclick="getall()">Show All Users</button>
+    <br /><br />
+    <p class="navbar-form" id="response">
+
+    </p>
+    
+
+{% endblock %}
